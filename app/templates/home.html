@@ -1,9 +1,25 @@
 {% extends 'header.html' %} {% block content %}
 <main>
-    <h1 class="text-center">Buscador Rick & Morty</h1>
+    <!-- Contenedor centrado para el título -->
+    <div class="d-flex justify-content-center align-items-center" style="height: 20vh;">
+        <h1 class="rick-morty-title text-center">Rick and Morty</h1>
+    </div>
 
+    <style>
+        @font-face {
+            font-family: 'Get Schwifty';
+            src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/3089507/get-schwifty.woff') format('woff');
+        }
 
-
+        .rick-morty-title {
+            font-family: 'Get Schwifty';
+            font-size: 3em;
+            color: #08BAE3;
+            -webkit-text-stroke: 1px #FFF765;
+            text-shadow: 2px 2px 5px #000;
+        }
+    </style>
+    
     <div class="d-flex justify-content-center" style="margin-bottom: 1%">
         <!-- Buscador del sitio -->
         <form class="d-flex" action="{% url 'search' %}" method="POST">
