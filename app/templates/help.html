@@ -1,58 +1,231 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="es" >
+<html lang="es" data-bs-theme="dark">
+
 <head>
+        <!--LINK BOOSTRAP-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!---FAVICON-->
+        <link rel="shortcut icon" href="{% static 'imagenes\FAVICOIN2.jpeg' %}" type="image/x-icon">
+
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <!-- Contenedor para el logo y texto alineados a la izquierda -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="{% static 'imagenes/uni.jpeg' %}" alt="Logo UNGS" width="40" height="40" style="border-radius: 50%;">
+                <span class="ms-2" href="https://www.ungs.edu.ar/">Universidad General Sarmiento</span> <!-- Espaciado a la derecha del logo -->
+            </a>
+
+            <!-- Botón colapsable para menú móvil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú de navegación alineado a la derecha -->
+            <div class="collapse navbar-collapse justify-content-end nav-underline" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index-page' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Galería</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'favoritos' %}">Favoritos</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        {% if request.user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'exit' %}">Salir</a>
+                        {% else %}
+                        <a class="nav-link" href="{% url 'login' %}"><strong>Iniciar Sesión</strong></a>
+                        {% endif %}
+                    </li>
+                    <!-- Nuevo ítem "Necesitas Ayuda" -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'help' %}">¿Necesitas Ayuda?</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Estilos CSS personalizados -->
+        <style>
+            /* Define la variable para la imagen de fondo */
+            :root {
+                --image: url("{% static 'IAMGENES/rrr.jpg' %}");
+            }
+
+            /* Aplica la imagen de fondo */
+            body {
+                background-image: var(--image);
+                background-size: cover;  /* Asegura que la imagen cubra toda la página */
+                background-position: center;  /* Centra la imagen */
+                height: 100vh;  /* Ajusta la altura al 100% del viewport */
+                margin: 0;
+            }
+        </style>
+    </nav>
+
+    <!-- Contenedor centrado para el título -->
+    <div class="d-flex justify-content-center align-items-center" style="height: 20vh;">
+        <h1 class="rick-morty-title text-center">Rick and Morty</h1>
+    </div>
+
+    <style>
+        @font-face {
+            font-family: 'Get Schwifty';
+            src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/3089507/get-schwifty.woff') format('woff');
+        }
+
+        .rick-morty-title {
+            font-family: 'Get Schwifty';
+            font-size: 3em;
+            color: #08BAE3;
+            -webkit-text-stroke: 1px #FFF765;
+            text-shadow: 2px 2px 5px #000;
+        }
+    </style>
+
+    <!---------------------------------------------CODIGO HELP---------------------------------------------------------------------->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Necesitas ayuda?</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <title>Página de Ayuda</title>
+    <!-- Agregar link a Bootstrap CSS si no está incluido -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container py-5">
-        <h1 class="text-center mb-4">¿Necesitas ayuda?</h1>
-        <p class="text-center">Aquí tienes los pasos que te ayudarán a resolver problemas o dudas.</p>
+    <div class="container mt-5">
+        <!-- Card para la sección de Ayuda -->
+        <div class="card justify-content-center mx-auto" style="width: 50rem;">
+            <div class="card-body">
+                <h2 class="text-first">Ayuda</h2>
+                <p class="text-center">
+                    Bienvenido a la sección de Ayuda de nuestro sitio web. Aquí encontrarás respuestas a las preguntas más frecuentes y guías útiles para sacar el máximo provecho de nuestros servicios. Si tienes alguna otra consulta o problema, no dudes en ponerte en contacto con nuestro soporte.
+                </p>
+            </div>
+        </div>
 
-        <div class="row g-4">
-            <!-- Paso 1 -->
-            <div class="col-md-4">
-                <div class="card h-100">
+        <!-- Usamos el grid de Bootstrap para dos tarjetas por fila -->
+        <div class="row mt-3">
+            <!-- Card para la primera pregunta -->
+            <div class="col-md-6">
+                <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Paso 1: Verifica tu conexión</h5>
-                        <p class="card-text">
-                            Asegúrate de que tienes una conexión estable a Internet. Si no puedes acceder a ciertas páginas, intenta reiniciar tu router o conectarte a otra red.
+                        <h2 class="text-first">1. ¿Cómo crear una cuenta?</h2>
+                        <p>
+                            Para crear una cuenta en nuestro sitio, sigue estos pasos:
+                            <ol>
+                                <li>Haz clic en el botón de <strong>Registrarse</strong> en la parte superior derecha de la página.</li>
+                                <li>Completa el formulario con tu nombre, dirección de correo electrónico y una contraseña segura.</li>
+                                <li>Haz clic en <strong>Crear cuenta</strong> y sigue las instrucciones en tu correo electrónico para confirmar tu cuenta.</li>
+                            </ol>
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Paso 2 -->
-            <div class="col-md-4">
-                <div class="card h-100">
+            <!-- segunda pregunta -->
+            <div class="col-md-6">
+                <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Paso 2: Revisa tu cuenta</h5>
-                        <p class="card-text">
-                            Si tienes problemas de inicio de sesión, verifica que estás usando el correo electrónico y la contraseña correctos. ¿Olvidaste tu contraseña? <a href="">Recupérala aquí</a>.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Paso 3 -->
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Paso 3: Ponte en contacto</h5>
-                        <p class="card-text">
-                            Si el problema persiste, contáctanos para recibir soporte. Ve a nuestra <a href="">página de contacto</a> o envíanos un correo a <a href="mailto:soporte@ejemplo.com">soporte@ejemplo.com</a>.
+                        <h2 class="text-first">2. ¿Cómo iniciar sesión?</h2>
+                        <p>
+                            Una vez que tengas una cuenta, puedes iniciar sesión fácilmente:
+                            <ol>
+                                <li>Haz clic en el botón <strong>Iniciar sesión</strong> en la parte superior de la página.</li>
+                                <li>Introduce tu nombre de usuario o correo electrónico y contraseña.</li>
+                                <li>Haz clic en <strong>Iniciar sesión</strong>. Si olvidaste tu contraseña, puedes restablecerla desde la página de inicio de sesión.</li>
+                            </ol>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="text-center mt-5">
-            <a href="{% url 'home' %}" class="btn btn-primary">Volver al inicio</a>
+        <!-- Segunda fila -->
+        <div class="row mt-3">
+            <!--tercera pregunta -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-first">3. ¿Cómo recuperar mi contraseña?</h2>
+                        <p>
+                            Si has olvidado tu contraseña, no te preocupes. Puedes restablecerla de la siguiente manera:
+                            <ol>
+                                <li>Ve a la página de <strong>Iniciar sesión</strong>.</li>
+                                <li>Haz clic en <strong>¿Olvidaste tu contraseña?</strong></li>
+                                <li>Ingresa tu dirección de correo electrónico y te enviaremos instrucciones para crear una nueva contraseña.</li>
+                            </ol>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card para la cuarta pregunta -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-first">4. ¿Cómo actualizar mi perfil?</h2>
+                        <p>
+                            Para actualizar tu perfil:
+                            <ol>
+                                <li>Inicia sesión en tu cuenta.</li>
+                                <li>Haz clic en tu nombre de usuario o avatar en la parte superior derecha de la página.</li>
+                                <li>Selecciona <strong>Mi perfil</strong> y podrás editar tu información personal, como tu nombre, dirección de correo electrónico y foto de perfil.</li>
+                            </ol>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tercera fila de preguntas en dos tarjetas -->
+        <div class="row mt-3">
+            <!-- Card para la quinta pregunta -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-first">5. ¿Cómo contactar con soporte?</h2>
+                        <p>
+                            Si necesitas asistencia adicional, puedes ponerte en contacto con nuestro equipo de soporte:
+                            <ol>
+                                <li>Haz clic en el enlace <strong>Contacto</strong> en la parte inferior de la página.</li>
+                                <li>Completa el formulario con tu consulta o problema y un miembro de nuestro equipo te responderá lo antes posible.</li>
+                            </ol>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+    <!-- Card para la sexta pregunta -->
+    <div class="col-md-6">
+    <div class="card justify-content-center mx-auto mt-3">
+        <div class="card-body">
+            <h2 class="text-first">6. ¿Qué hacer si encuentro un error en el sitio?</h2>
+            <p>
+                Si encuentras algún error o tienes problemas con alguna funcionalidad del sitio, por favor infórmanos a través de nuestro formulario de contacto. Detalla el problema lo más posible, incluyendo los pasos que seguiste antes de que ocurriera el error, para ayudarnos a resolverlo rápidamente.
+            </p>
+            </div>
         </div>
     </div>
+
+    <!-- Card para los Términos y Condiciones -->
+    <div class="card justify-content-center mx-auto mt-3">
+        <div class="card-body">
+            <h2 class="text-first">7. Términos y condiciones</h2>
+            <p>
+                Para más información sobre el uso de nuestros servicios, puedes consultar nuestros <strong>Términos y Condiciones</strong> y <strong>Política de Privacidad</strong>. Estos documentos están disponibles en el pie de página de nuestro sitio.
+            </p>
+        </div>
+        </div>
+    </div>
+    <!--LINK BOOSTRAP-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
 </body>
 </html>
