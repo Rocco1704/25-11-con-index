@@ -19,12 +19,12 @@
             text-shadow: 2px 2px 5px #000;
         }
     </style>
-    
+
     <div class="d-flex justify-content-center" style="margin-bottom: 1%">
         <!-- Buscador del sitio -->
         <form class="d-flex" action="{% url 'search' %}" method="POST">
             {% csrf_token %}
-            <input class="form-control me-2" type="search" name="query" placeholder="Escribí una palabra" aria-label="Search">
+            <input class="form-control me-2" type="search" name="query" placeholder="Busca tu personaje" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
     </div>

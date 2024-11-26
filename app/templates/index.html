@@ -6,7 +6,7 @@
     {% if request.user.is_authenticated %}
     <h2 class="text-center">Bienvenido {{ user.username | upper }}!</h2>
     {% else %}
-    <h2 class="text-center">Bienvenido!</h2>
+    <h2 class="text-center">!Bienvenido!</h2>
     {% endif %}
 
     <p class="text-center">
@@ -28,7 +28,7 @@
             </div>
 
             <!-- Dan Harmon -->
-            <div class="col-md-4 text-center">
+            <div class="col-md-4 text-center"   >
                 <img src="{% static 'imagenes/Dan.jpg' %}" class="img-fluid rounded-circle" alt="Dan Harmon" style="max-width: 200px;">
                 <p class="mt-2"><strong>Dan Harmon</strong></p>
                 <p>
