@@ -18,5 +18,9 @@ urlpatterns = [
     path('favourites/delete/', views.deleteFavourite, name='borrar-favorito'),
 
     path('exit/', views.exit, name='exit'),
-]
+
+    path('help/', views.help_view, name='help'),
+    path('toggle-theme/', views.toggle_theme, name='toggle_theme')
+    ]
+
 

@@ -1,4 +1,5 @@
-{% extends 'header.html' %} {% block content %}
+{% extends 'header.html' %} 
+{% block content %}
 <main>
     <!-- Contenedor centrado para el título -->
     <div class="d-flex justify-content-center align-items-center" style="height: 20vh;">
@@ -18,6 +19,17 @@
             -webkit-text-stroke: 1px #FFF765;
             text-shadow: 2px 2px 5px #000;
         }
+
+        /* Estilos dinámicos para las cards según el tema */
+        body[data-bs-theme="dark"] .card {
+            background-color: #343a40; /* Fondo oscuro */
+            color: #f8f9fa; /* Texto claro */
+        }
+
+        body[data-bs-theme="light"] .card {
+            background-color: #ffffff; /* Fondo claro */
+            color: #212529; /* Texto oscuro */
+        }
     </style>
 
     <div class="d-flex justify-content-center" style="margin-bottom: 1%">
@@ -33,16 +45,15 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% if images|length == 0 %}
         <h2 class="text-center">La búsqueda no arrojó resultados...</h2>
-        {% else %} {% for img in images %}
+        {% else %}
+        {% for img in images %}
         <div class="col">
-            
+            <!-- Clases dinámicas para el borde según el estado del personaje -->
             <div class="card mb-3 ms-5 {% if img.status == 'Alive' %}border-success{% elif img.status == 'Dead' %}border-danger{% else %}border-warning{% endif %}" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="{{ img.url }}" class="card-img-top" alt="imagen">
-
                     </div>
-                    
 
                     <div class="col-md-8">
                         <div class="card-body">
@@ -54,7 +65,6 @@
                                     {% else %} 🟠 {{ img.status }}
                                     {% endif %}
                                 </strong>    
-
                             </p>
                             <p class="card-text"><small class="text-body-secondary">Última ubicación: {{ img.last_location }}</small></p>
                             <p class="card-text"><small class="text-body-secondary">Episodio inicial: {{ img.first_seen }}</small></p>
@@ -67,9 +77,12 @@
                                 <input type="hidden" name="url" value="{{ img.url }}">
                                 <input type="hidden" name="status" value="{{ img.status }}">
                                 <input type="hidden" name="last_location" value="{{ img.last_location }}">
-                                <input type="hidden" name="first_seen" value="{{ img.first_seen }}"> {% if img in favourite_list %}
-                                <button type="submit" class="btn btn-primary btn-sm float-left" style="color:white" disabled>✔️ Ya está en favoritos</button> {% else %}
-                                <button type="submit" class="btn btn-primary btn-sm float-left" style="color:white">❤️ Añadir a favoritos</button> {% endif %}
+                                <input type="hidden" name="first_seen" value="{{ img.first_seen }}">
+                                {% if img in favourite_list %}
+                                <button type="submit" class="btn btn-primary btn-sm float-left" style="color:white" disabled>✔️ Ya está en favoritos</button>
+                                {% else %}
+                                <button type="submit" class="btn btn-primary btn-sm float-left" style="color:white">❤️ Añadir a favoritos</button>
+                                {% endif %}
                             </form>
                         </div>
                         {% endif %}
@@ -77,9 +90,8 @@
                 </div>
             </div>
         </div>
-        {% endfor %} {% endif %}
+        {% endfor %}
+        {% endif %}
     </div>
 </main>
 {% endblock %}
-
-

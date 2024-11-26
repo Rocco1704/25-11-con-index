@@ -1,0 +1,10 @@
+<form method="post" action="{% url 'toggle_theme' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-secondary">
+        {% if request.session.theme == 'dark' %}
+        ☀️ Modo Claro
+        {% else %}
+        🌙 Modo Oscuro
+        {% endif %}
+    </button>
+</form>

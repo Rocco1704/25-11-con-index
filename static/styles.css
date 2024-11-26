@@ -142,4 +142,32 @@ table.table td i {
 }
 
 
+.creator-img {
+    width: 150px; /* Ancho fijo */
+    height: 150px; /* Alto fijo */
+    object-fit: cover; /* Recorta para mantener el contenido dentro del marco */
+}
 
+.row .col-md-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinea el contenido desde arriba */
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; /* Ajusta según tu diseño */
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    z-index: 1000;
+}
+
+body {
+    padding-bottom: 50px; /* Coincide con la altura del footer */
+}

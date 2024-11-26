@@ -37,9 +37,21 @@ def search(request):
         return render (request,'home.html', {'images': images, 'query': search_msg})# se canbio el gallery.html por home y images
     else:
         return redirect('home')
+def help_view(request):
+    return render(request, 'help.html')
 
+def toggle_theme(request):
+    # Obtener el tema actual de la sesión
+    current_theme = request.session.get('theme', 'light')
 
+    # Cambiar el tema
+    if current_theme == 'dark':
+        request.session['theme'] = 'light'
+    else:
+        request.session['theme'] = 'dark'
 
+    # Redirigir a la misma página u otra
+    return redirect(request.META.get('HTTP_REFERER', 'home'))
 
 
 
