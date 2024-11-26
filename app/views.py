@@ -37,6 +37,7 @@ def search(request):
         return render (request,'home.html', {'images': images, 'query': search_msg})# se canbio el gallery.html por home y images
     else:
         return redirect('home')
+
 def help_view(request):
     return render(request, 'help.html')
 
