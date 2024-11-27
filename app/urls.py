@@ -21,6 +21,7 @@ urlpatterns = [
 
     path('help/', views.help_view, name='help'),
     path('toggle-theme/', views.toggle_theme, name='toggle_theme')
+    
     ]
 
 
